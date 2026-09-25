@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles — poori site ka foundation */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-ink text-ivory font-body antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: #ff6b9d;
+  color: #0f1226;
+}
+
+/* Custom scrollbar — thin aur theme ke colors ke sath */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0f1226;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff6b9d, #7c5cfc);
+  border-radius: 10px;
+}
+
+/* Keyboard focus states — accessibility ke liye zaroori */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #ff6b9d;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Floating blob animation — background mein slow floating shapes */
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -40px) scale(1.05); }
+}
+.animate-float-slow {
+  animation: float-slow 12s ease-in-out infinite;
+}
+
+@keyframes float-slower {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-25px, 35px) scale(1.08); }
+}
+.animate-float-slower {
+  animation: float-slower 16s ease-in-out infinite;
+}
+
+/* Reduced motion respect karte hain — jo users animation nahi chahte unke liye */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
